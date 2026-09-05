@@ -1,0 +1,692 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+
+  <world name="synaids_advanced_warehouse">
+    <plugin filename="gz-sim-sensors-system"
+            name="gz::sim::systems::Sensors">
+    </plugin>
+
+
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="default_physics" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics"/>
+
+    <plugin filename="gz-sim-user-commands-system"
+            name="gz::sim::systems::UserCommands"/>
+
+    <plugin filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster"/>
+
+
+    <!-- ===================================================== -->
+    <!-- FLOOR -->
+    <!-- ===================================================== -->
+
+    <model name="warehouse_floor">
+      <static>true</static>
+      <pose>0 0 -0.05 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>24 16 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>24 16 0.1</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.20 0.20 0.22 1</ambient>
+            <diffuse>0.32 0.32 0.35 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- PERIMETER WALLS -->
+    <!-- ===================================================== -->
+
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 8 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>24 0.3 3</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>24 0.3 3</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.10 1</ambient>
+            <diffuse>0.12 0.12 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -8 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>24 0.3 3</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>24 0.3 3</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.10 1</ambient>
+            <diffuse>0.12 0.12 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_east">
+      <static>true</static>
+      <pose>12 0 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.3 16 3</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.3 16 3</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.10 1</ambient>
+            <diffuse>0.12 0.12 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-12 0 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.3 16 3</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.3 16 3</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.10 1</ambient>
+            <diffuse>0.12 0.12 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- SHELF BLOCK 1 -->
+    <!-- ===================================================== -->
+
+    <model name="shelf_1">
+      <static>true</static>
+      <pose>-6 3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.12 0.16 1</ambient>
+            <diffuse>0.18 0.25 0.30 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- SHELF BLOCK 2 -->
+
+    <model name="shelf_2">
+      <static>true</static>
+      <pose>0 3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.18 0.18 1</ambient>
+            <diffuse>0.35 0.38 0.40 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- SHELF BLOCK 3 -->
+
+    <model name="shelf_3">
+      <static>true</static>
+      <pose>6 3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.16 0.14 1</ambient>
+            <diffuse>0.28 0.34 0.30 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- SHELF BLOCK 4 -->
+
+    <model name="shelf_4">
+      <static>true</static>
+      <pose>-6 -3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.20 0.20 0.18 1</ambient>
+            <diffuse>0.38 0.40 0.36 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- SHELF BLOCK 5 -->
+
+    <model name="shelf_5">
+      <static>true</static>
+      <pose>0 -3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.16 0.18 0.20 1</ambient>
+            <diffuse>0.30 0.34 0.38 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- SHELF BLOCK 6 -->
+
+    <model name="shelf_6">
+      <static>true</static>
+      <pose>6 -3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.18 0.20 1</ambient>
+            <diffuse>0.25 0.32 0.35 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- PICKUP ZONE - GREEN -->
+    <!-- ===================================================== -->
+
+    <model name="pickup_zone">
+      <static>true</static>
+      <pose>-9 6 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>3 2 0.04</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.25 0.10 1</ambient>
+            <diffuse>0.25 0.55 0.30 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- DELIVERY ZONE - ORANGE -->
+    <!-- ===================================================== -->
+
+    <model name="delivery_zone">
+      <static>true</static>
+      <pose>9 -6 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>3 2 0.04</size></box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.16 0.03 1</ambient>
+            <diffuse>0.75 0.35 0.08 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- CHARGING STATION - BLUE -->
+    <!-- ===================================================== -->
+
+    <model name="charging_station">
+      <static>true</static>
+      <pose>9 6 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>3 2 0.04</size></box>
+          </geometry>
+          <material>
+            <ambient>0.05 0.15 0.35 1</ambient>
+            <diffuse>0.10 0.30 0.65 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- RESTRICTED ZONE - RED -->
+    <!-- ===================================================== -->
+
+    <model name="restricted_zone">
+      <static>true</static>
+      <pose>-9 -6 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>3 2 0.04</size></box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.04 0.04 1</ambient>
+            <diffuse>0.65 0.10 0.10 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- CENTRAL SAFETY CROSSING -->
+    <!-- ===================================================== -->
+
+    <model name="central_intersection">
+      <static>true</static>
+      <pose>0 0 0.025 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>5 5 0.05</size></box>
+          </geometry>
+          <material>
+            <ambient>0.45 0.38 0.03 1</ambient>
+            <diffuse>0.80 0.65 0.08 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- MAINTENANCE AREA - PURPLE -->
+    <!-- ===================================================== -->
+
+    <model name="maintenance_area">
+      <static>true</static>
+      <pose>9 0 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>2.5 2.5 0.04</size></box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.08 0.25 1</ambient>
+            <diffuse>0.40 0.20 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- LIGHTING -->
+    <!-- ===================================================== -->
+
+    <light name="warehouse_light_1" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <direction>-0.3 0.2 -1</direction>
+    </light>
+
+    <light name="warehouse_light_2" type="point">
+      <pose>-6 0 6 0 0 0</pose>
+      <diffuse>0.8 0.9 1.0 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>15</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+
+    <light name="warehouse_light_3" type="point">
+      <pose>6 0 6 0 0 0</pose>
+      <diffuse>1.0 0.8 0.6 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>15</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+
+  <model name="R1">
+
+    <pose>-9 5 0.25 0 0 0</pose>
+
+    <!-- Main chassis -->
+    <link name="base_link">
+
+      <inertial>
+        <mass>12</mass>
+        <inertia>
+          <ixx>0.5</ixx>
+          <iyy>0.5</iyy>
+          <izz>0.5</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="base_collision">
+        <geometry>
+          <box>
+            <size>0.9 0.65 0.25</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="base_visual">
+        <geometry>
+          <box>
+            <size>0.9 0.65 0.25</size>
+          </box>
+        </geometry>
+
+        <material>
+          <ambient>0.10 0.16 0.20 1</ambient>
+          <diffuse>0.20 0.32 0.40 1</diffuse>
+        </material>
+      </visual>
+
+    </link>
+
+
+    <!-- Left wheel -->
+    <link name="left_wheel">
+
+      <pose>0 0.38 -0.12 1.5708 0 0</pose>
+
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.02</ixx>
+          <iyy>0.02</iyy>
+          <izz>0.02</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.16</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.16</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+
+        <material>
+          <ambient>0.03 0.03 0.03 1</ambient>
+          <diffuse>0.08 0.08 0.08 1</diffuse>
+        </material>
+      </visual>
+
+    </link>
+
+
+    <!-- Right wheel -->
+    <link name="right_wheel">
+
+      <pose>0 -0.38 -0.12 1.5708 0 0</pose>
+
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.02</ixx>
+          <iyy>0.02</iyy>
+          <izz>0.02</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.16</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.16</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+
+        <material>
+          <ambient>0.03 0.03 0.03 1</ambient>
+          <diffuse>0.08 0.08 0.08 1</diffuse>
+        </material>
+      </visual>
+
+    </link>
+
+
+    <!-- Front sensor housing -->
+    <link name="sensor">
+
+      <pose>0.35 0 0.18 0 0 0</pose>
+
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.10</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+
+        <material>
+          <ambient>0.65 0.65 0.65 1</ambient>
+          <diffuse>0.75 0.75 0.75 1</diffuse>
+        </material>
+      </visual>
+
+    </link>
+
+
+    <!-- Differential drive -->
+    <plugin
+      filename="gz-sim-diff-drive-system"
+      name="gz::sim::systems::DiffDrive">
+
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+
+      <wheel_separation>0.76</wheel_separation>
+      <wheel_radius>0.16</wheel_radius>
+
+      <topic>cmd_vel</topic>
+      <odom_topic>odom</odom_topic>
+
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_link</child_frame_id>
+
+    </plugin>
+
+
+    <!-- Lidar -->
+    <link name="lidar">
+
+      <pose>0 0 0.35 0 0 0</pose>
+
+      <sensor name="lidar_sensor" type="gpu_lidar">
+
+        <topic>scan</topic>
+
+        <update_rate>10</update_rate>
+
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+
+          <range>
+            <min>0.12</min>
+            <max>12</max>
+            <resolution>0.01</resolution>
+          </range>
+        </lidar>
+
+      </sensor>
+
+    </link>
+
+
+    <!-- Wheel joints -->
+    <joint name="left_wheel_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>left_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+    <joint name="right_wheel_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>right_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+  </model>
+</world>
+</sdf>

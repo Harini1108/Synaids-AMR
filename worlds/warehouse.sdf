@@ -1,0 +1,475 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+
+  <world name="synaids_advanced_warehouse">
+
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="default_physics" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics"/>
+
+    <plugin filename="gz-sim-user-commands-system"
+            name="gz::sim::systems::UserCommands"/>
+
+    <plugin filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster"/>
+
+
+    <!-- ===================================================== -->
+    <!-- FLOOR -->
+    <!-- ===================================================== -->
+
+    <model name="warehouse_floor">
+      <static>true</static>
+      <pose>0 0 -0.05 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>24 16 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>24 16 0.1</size>
+            </box>
+          </geometry>
+
+          <material>
+            <ambient>0.20 0.20 0.22 1</ambient>
+            <diffuse>0.32 0.32 0.35 1</diffuse>
+            <specular>0.15 0.15 0.15 1</specular>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- PERIMETER WALLS -->
+    <!-- ===================================================== -->
+
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 8 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>24 0.3 3</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>24 0.3 3</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.10 1</ambient>
+            <diffuse>0.12 0.12 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -8 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>24 0.3 3</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>24 0.3 3</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.10 1</ambient>
+            <diffuse>0.12 0.12 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_east">
+      <static>true</static>
+      <pose>12 0 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.3 16 3</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.3 16 3</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.10 1</ambient>
+            <diffuse>0.12 0.12 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-12 0 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box><size>0.3 16 3</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.3 16 3</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.08 0.10 1</ambient>
+            <diffuse>0.12 0.12 0.15 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- SHELF BLOCK 1 -->
+    <!-- ===================================================== -->
+
+    <model name="shelf_1">
+      <static>true</static>
+      <pose>-6 3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.12 0.16 1</ambient>
+            <diffuse>0.18 0.25 0.30 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- SHELF BLOCK 2 -->
+
+    <model name="shelf_2">
+      <static>true</static>
+      <pose>0 3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.18 0.18 1</ambient>
+            <diffuse>0.35 0.38 0.40 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- SHELF BLOCK 3 -->
+
+    <model name="shelf_3">
+      <static>true</static>
+      <pose>6 3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.16 0.14 1</ambient>
+            <diffuse>0.28 0.34 0.30 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- SHELF BLOCK 4 -->
+
+    <model name="shelf_4">
+      <static>true</static>
+      <pose>-6 -3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.20 0.20 0.18 1</ambient>
+            <diffuse>0.38 0.40 0.36 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- SHELF BLOCK 5 -->
+
+    <model name="shelf_5">
+      <static>true</static>
+      <pose>0 -3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.16 0.18 0.20 1</ambient>
+            <diffuse>0.30 0.34 0.38 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- SHELF BLOCK 6 -->
+
+    <model name="shelf_6">
+      <static>true</static>
+      <pose>6 -3 1.2 0 0 0</pose>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box><size>4 1.0 2.4</size></box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.18 0.20 1</ambient>
+            <diffuse>0.25 0.32 0.35 1</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- PICKUP ZONE - GREEN -->
+    <!-- ===================================================== -->
+
+    <model name="pickup_zone">
+      <static>true</static>
+      <pose>-9 6 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>3 2 0.04</size></box>
+          </geometry>
+          <material>
+            <ambient>0.08 0.25 0.10 1</ambient>
+            <diffuse>0.25 0.55 0.30 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- DELIVERY ZONE - ORANGE -->
+    <!-- ===================================================== -->
+
+    <model name="delivery_zone">
+      <static>true</static>
+      <pose>9 -6 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>3 2 0.04</size></box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.16 0.03 1</ambient>
+            <diffuse>0.75 0.35 0.08 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- CHARGING STATION - BLUE -->
+    <!-- ===================================================== -->
+
+    <model name="charging_station">
+      <static>true</static>
+      <pose>9 6 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>3 2 0.04</size></box>
+          </geometry>
+          <material>
+            <ambient>0.05 0.15 0.35 1</ambient>
+            <diffuse>0.10 0.30 0.65 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- RESTRICTED ZONE - RED -->
+    <!-- ===================================================== -->
+
+    <model name="restricted_zone">
+      <static>true</static>
+      <pose>-9 -6 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>3 2 0.04</size></box>
+          </geometry>
+          <material>
+            <ambient>0.35 0.04 0.04 1</ambient>
+            <diffuse>0.65 0.10 0.10 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- CENTRAL SAFETY CROSSING -->
+    <!-- ===================================================== -->
+
+    <model name="central_intersection">
+      <static>true</static>
+      <pose>0 0 0.025 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>5 5 0.05</size></box>
+          </geometry>
+          <material>
+            <ambient>0.45 0.38 0.03 1</ambient>
+            <diffuse>0.80 0.65 0.08 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- MAINTENANCE AREA - PURPLE -->
+    <!-- ===================================================== -->
+
+    <model name="maintenance_area">
+      <static>true</static>
+      <pose>9 0 0.02 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>2.5 2.5 0.04</size></box>
+          </geometry>
+          <material>
+            <ambient>0.18 0.08 0.25 1</ambient>
+            <diffuse>0.40 0.20 0.55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <!-- ===================================================== -->
+    <!-- LIGHTING -->
+    <!-- ===================================================== -->
+
+    <light name="warehouse_light_1" type="directional">
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <direction>-0.3 0.2 -1</direction>
+    </light>
+
+    <light name="warehouse_light_2" type="point">
+      <pose>-6 0 6 0 0 0</pose>
+      <diffuse>0.8 0.9 1.0 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>15</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+
+    <light name="warehouse_light_3" type="point">
+      <pose>6 0 6 0 0 0</pose>
+      <diffuse>1.0 0.8 0.6 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>15</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+    </light>
+
+  </world>
+</sdf>
